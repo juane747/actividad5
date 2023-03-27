@@ -30,3 +30,10 @@ botontransmitir.addEventListener('click',function(){
     })
 })
 
+
+botonConsultar.addEventListener('click',function(){
+    var autor= document.getElementById('nombre-autor')
+    var usoautor=autor.value
+    window.comunicacion.buscarregistro(usoautor)
+})
+

@@ -7,6 +7,6 @@ contextBridge.exposeInMainWorld(//esto permite obtener estas funciones en el mai
         guardarregistro: (datos)=> ipcRenderer.send('guardarregistro',datos)//aca ejecutamos el metodo y se envia el resultado a main
         //a main.js
         ,
-          
+        buscarregistro: (datos)=>ipcRenderer.send('buscarregistro',datos)
     }
 )

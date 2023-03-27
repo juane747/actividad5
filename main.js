@@ -73,5 +73,23 @@ ipcMain.on("guardarregistro",function(event,args){
    
 })
 
+ipcMain.on('buscarregistro',function(event,args){//aca se reciben los datos de preload y se ejecuta metodo seleccionado
+    console.log(args)
+    
+   // verificacion del registro
+    Nombre.findAll({
+        where:{
+            nombre:args
+        }
+    })
+    .then((results, fields)=>{//con esto indicamos que si existe un registro valido
+        console.log(results)
+        /*
+        if(results[0].dataValues.id >0){
+            return bcrypt.compare(args[1],results[0]['dataValues']['pass'])
+        }*/
+        })
+        
+})
 
 app.whenReady().then(createWindow)
