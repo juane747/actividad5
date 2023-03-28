@@ -1,10 +1,13 @@
+
+
 var botontransmitir = document.getElementById('transmitir')
 var tablaResultados = document.getElementById('TablaResultados')
 var botonGuardar = document.getElementById('guardar')
 var botonConsultar = document.getElementById('consultar')
 
 botontransmitir.addEventListener('click',function(){
-    
+    tablaResultados.innerHTML = "<thead><tr><th scope=col>No.</th><th scope=col>Codigo</th><th scope=col>Rol</th><th scope=col>Nombre</th><th scope=col>Version</th></tr></thead>"
+
     var autor= document.getElementById('nombre-autor')
     var usoautor=autor.value
     //alert(usoautor)
@@ -16,7 +19,7 @@ botontransmitir.addEventListener('click',function(){
             window.comunicacion.guardarregistro(documentos)
            
         })
-        tablaResultados.innerHTML=""
+        
         for(let i =0; i<documentos.length;i++){
             var obra = documentos[i]
             tablaResultados.innerHTML += "<tr>"+
@@ -35,5 +38,8 @@ botonConsultar.addEventListener('click',function(){
     var autor= document.getElementById('nombre-autor')
     var usoautor=autor.value
     window.comunicacion.buscarregistro(usoautor)
+    window.comunicacion.enviarregistro(function(event,args){
+       console.log(args)
+    })
 })
 

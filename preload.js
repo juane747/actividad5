@@ -8,5 +8,8 @@ contextBridge.exposeInMainWorld(//esto permite obtener estas funciones en el mai
         //a main.js
         ,
         buscarregistro: (datos)=>ipcRenderer.send('buscarregistro',datos)
+        ,
+        
+        enviarregistro: (callback)=> ipcRenderer.on('enviarregistro',callback)
     }
 )
