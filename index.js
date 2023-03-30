@@ -1,5 +1,6 @@
 
 
+
 var botontransmitir = document.getElementById('transmitir')
 var tablaResultados = document.getElementById('TablaResultados')
 var botonGuardar = document.getElementById('guardar')
@@ -39,7 +40,26 @@ botonConsultar.addEventListener('click',function(){
     var usoautor=autor.value
     window.comunicacion.buscarregistro(usoautor)
     window.comunicacion.enviarregistro(function(event,args){
-       console.log(args)
+        console.log(args);
+
+       var documentos = args
+       
+       for(let i =0; i<documentos.length;i++){
+           var obra = documentos[i].dataValues
+           
+           tablaResultados.innerHTML += "<tr>"+
+                                               "<th scope =\"row\">"+i+"</td>"+
+                                               "<td>"+obra['key']+"</td>"+
+                                               "<td>"+obra['type']+"</td>"+
+                                               "<td>"+obra['name']+"</td>"+
+                                               "<td>"+obra['_version_']+"</td>"+
+                                           "</tr>"
+       }
+
     })
+   
+   
+     
+    
 })
 

@@ -48,6 +48,8 @@ sequelize.authenticate()
 .catch((error)=>{
     console.error('Error de conexion',error);
 })
+
+let venta
 function createWindow(){
     const venta = new BrowserWindow({
         width:1500,
@@ -74,7 +76,7 @@ ipcMain.on("guardarregistro",function(event,args){
 })
 
 ipcMain.on('buscarregistro',function(event,args){//aca se reciben los datos de preload y se ejecuta metodo seleccionado
-    console.log(args)
+    //console.log(args)
     
    // verificacion del registro
     Nombre.findAll({
@@ -83,11 +85,9 @@ ipcMain.on('buscarregistro',function(event,args){//aca se reciben los datos de p
         }
     })
     .then((results, fields)=>{//con esto indicamos que si existe un registro valido
-       var registros=results
-        console.log(registros)
-        venta.webContents.send('enviarregistro',registros)
-      
-        })
+      // console.log(results)
+       window.comunicacion.enviarregistro(results)
+     })
         
 })
 
