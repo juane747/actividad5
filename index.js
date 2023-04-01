@@ -39,7 +39,7 @@ botonConsultar.addEventListener('click',function(){
     var autor= document.getElementById('nombre-autor')
     var usoautor=autor.value
     window.comunicacion.buscarregistro(usoautor)
-    window.comunicacion.enviarregistro(function(event,args){
+    window.comunicacion.enviarregistro('enviarregistro',function(event,args){
         console.log(args);
 
        var documentos = args
