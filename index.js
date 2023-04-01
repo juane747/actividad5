@@ -7,7 +7,8 @@ var botonGuardar = document.getElementById('guardar')
 var botonConsultar = document.getElementById('consultar')
 
 botontransmitir.addEventListener('click',function(){
-    tablaResultados.innerHTML = "<thead><tr><th scope=col>No.</th><th scope=col>Codigo</th><th scope=col>Rol</th><th scope=col>Nombre</th><th scope=col>Version</th></tr></thead>"
+    botonGuardar = document.getElementById('guardar').disabled=false
+    tablaResultados.innerHTML = "<thead><tr><th scope=col>No.</th><th scope=col>Codigo</th><th scope=col>Rol</th><th scope=col>Nombre</th><th scope=col>Version</th><th scope=col>Fecha</th></tr></thead>"
 
     var autor= document.getElementById('nombre-autor')
     var usoautor=autor.value
@@ -34,25 +35,31 @@ botontransmitir.addEventListener('click',function(){
     })
 })
 
-
+//Solo con una duda como se podria reiniciar el arreglo, para que no muestre duplicado los valores
 botonConsultar.addEventListener('click',function(){
+    
+    botonGuardar = document.getElementById('guardar').disabled=true
+
+    tablaResultados.innerHTML = "<thead><tr><th scope=col>No.</th><th scope=col>Codigo</th><th scope=col>Rol</th><th scope=col>Nombre</th><th scope=col>Version</th><th scope=col>Fecha</th></tr></thead>"
     var autor= document.getElementById('nombre-autor')
     var usoautor=autor.value
     window.comunicacion.buscarregistro(usoautor)
-    window.comunicacion.enviarregistro('enviarregistro',function(event,args){
-        console.log(args);
+    
+    window.comunicacion.enviarregistro(function(event,args){
+    
 
-       var documentos = args
+       documentos = args
        
        for(let i =0; i<documentos.length;i++){
            var obra = documentos[i].dataValues
            
            tablaResultados.innerHTML += "<tr>"+
                                                "<th scope =\"row\">"+i+"</td>"+
-                                               "<td>"+obra['key']+"</td>"+
-                                               "<td>"+obra['type']+"</td>"+
-                                               "<td>"+obra['name']+"</td>"+
-                                               "<td>"+obra['_version_']+"</td>"+
+                                               "<td>"+obra['codigo']+"</td>"+
+                                               "<td>"+obra['rol']+"</td>"+
+                                               "<td>"+obra['nombre']+"</td>"+
+                                               "<td>"+obra['version']+"</td>"+
+                                               "<td>"+obra['fecha']+"</td>"+
                                            "</tr>"
        }
 

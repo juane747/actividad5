@@ -51,7 +51,7 @@ sequelize.authenticate()
 
 let venta
 function createWindow(){
-    const venta = new BrowserWindow({
+     venta = new BrowserWindow({
         width:1500,
         heigth:800,
         webPreferences:{//nos permite accede a funciones nod, en este caso para interface de comunicacion
@@ -86,7 +86,8 @@ ipcMain.on('buscarregistro',function(event,args){//aca se reciben los datos de p
     })
     .then((results, fields)=>{//con esto indicamos que si existe un registro valido
       // console.log(results)
-       window.comunicacion.enviarregistro(results)
+   
+       venta.webContents.send('enviarregistro', results)
      })
         
 })
